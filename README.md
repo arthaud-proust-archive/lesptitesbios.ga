@@ -1,15 +1,15 @@
-<p align="center" style="font-size: 3rem;">Les p'tites bios</p>
+# Les p'tites bios
 
-# Site
-## Utilisation
+## Site
+### Utilisation
 > Le contenu est régulièrement mis à jour
 - Recherchez des biographies d'auteurs, découvrez leurs oeuvres
 - Révisez votre oral de français avec les fiches de révisions
 
-## Contribution
+### Contribution
 Vous pouvez nous aider à la rédaction du site en vous [inscrivant](https://lesptitesbios.ga/register). 
 
-## Caractéristiques
+### Caractéristiques
 - [Badges](https://lesptitesbios.ga/badges) informatifs sur les fiches
 - Possibilité d'imprimer les fiches avec plusieurs options différentes
 - Recherche de fiches par nom ou date
