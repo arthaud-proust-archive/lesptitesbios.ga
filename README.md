@@ -17,6 +17,7 @@ Vous pouvez nous aider à la rédaction du site en vous [inscrivant](https://les
 
 # Api
 Vous pouvez utiliser notre Api pour récupérer les fiches du site, avec des requêtes Json.
+> Le contenu ('content','bio','notes', 'text') des fiches est formatté en **markdown** à l'aide de [toast-ui.vue-editor](https://github.com/nhn/toast-ui.vue-editor) (ancienne version)
 
 ## Auteurs: 
 - GET https://lesptitesbios.ga/api/persons
