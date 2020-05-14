@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Trash;
 use App\Persons;
 use App\Artworks;
+use App\Traits\Logs;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use JWTAuth;
@@ -13,8 +14,7 @@ use Response;
 
 class PersonsController extends Controller
 {
-
-
+    use Logs;
 
     public function index(Request $request)
     {
@@ -84,7 +84,7 @@ class PersonsController extends Controller
         $imageName = $request->get('name').'.'.request()->img->getClientOriginalExtension();
         request()->img->move(public_path('img/persons'), $imageName);
 
-
+        $user = $this->getUser($request->token);
         // Enregistrer le post dans la DB 
         $person = persons::create([
             'slug'  => $request->get('slug'),
@@ -93,8 +93,10 @@ class PersonsController extends Controller
             'img' => '/img/persons/'.$imageName,
             'date' => $request->get('date'),
             'bio' => $request->get('bio'),
-            'notes' => $request->get('notes')
+            'notes' => $request->get('notes'),
+            'editor' => $user->name
         ]);
+        $this->addLog($request->token, 'Create', 'Person '.$request->slug);
 
         // retourner le post
         $persons = persons::all();
@@ -126,7 +128,7 @@ class PersonsController extends Controller
             //on retourne l'erreur
             return response()->json($validator->errors()->first(), 400);
         }
-        $user = JWTAuth::toUser($request->token);
+        $user = $this->getUser($request->token);
 
         
 
@@ -145,7 +147,9 @@ class PersonsController extends Controller
         $person->date = $request->get('date');
         $person->bio = $request->get('bio');
         $person->notes = $request->get('notes');
+        $person->editor = $user->name;
         $person->save();
+        $this->addLog($request->token, 'Update', 'Person '.$person->slug);
 
         // retourner le succès et le post
         $persons = persons::all();
@@ -175,11 +179,14 @@ class PersonsController extends Controller
             'img' => $person->img,
             'date' => $person->date,
             'bio' => $person->bio,
-            'notes' => $person->notes
+            'notes' => $person->notes,
+            'editor' => $person->editor
         ]);
 
         // Delete le post de la DB
         $person->delete();
+        $this->addLog($request->token, 'Place in trash', 'Person '.$request->slug);
+
         $persons = Persons::all();
         return response()->json($persons);
     }

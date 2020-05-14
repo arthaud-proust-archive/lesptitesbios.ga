@@ -9,8 +9,8 @@ class Artworks extends Model
     protected $table = 'artworks';
 
     protected $fillable = [
-        'id', 'slug','state', 'name', 'person', 'date', 'content', 'text', 'notes'
+        'id', 'slug','state', 'name', 'person', 'date', 'content', 'text', 'notes', 'editor'
     ];
 
-    public $timestamps = false;
+    public $timestamps = true;
 }

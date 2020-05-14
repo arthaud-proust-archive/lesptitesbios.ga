@@ -66,6 +66,8 @@ Route::group(['middleware' => ['jwt.auth', 'level-user']], function()
             // users
             Route::get('users', 'UsersController@index');
 
+            // logs
+            Route::get('logs', 'LogsController@index');
 
             // trash
             Route::get('trash', 'TrashController@index');

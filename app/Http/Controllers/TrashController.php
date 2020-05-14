@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Traits\Logs;
 use App\Trash;
 use App\Persons;
 use App\Artworks;
@@ -12,6 +13,7 @@ use Response;
 
 class TrashController extends Controller
 {
+    use Logs;
 
 
     public function index(Request $request)
@@ -60,9 +62,11 @@ class TrashController extends Controller
                 'img' => $element->img,
                 'date' => $element->date,
                 'bio' => $element->bio,
-                'notes' => $element->notes
+                'notes' => $element->notes,
+                'editor' => $element->editor
             ]);
             $element->delete();
+            $this->addLog($request->token, 'Restore from trash', 'Person '.$element->slug);
 
             // retourner le post
             return response()->json(Trash::all(), 200);
@@ -77,9 +81,11 @@ class TrashController extends Controller
                 'person'  => $element->person,
                 'content' => $element->content,
                 'text' => $element->text,
-                'notes' => $element->notes
+                'notes' => $element->notes,
+                'editor' => $element->editor
             ]);
             $element->delete();
+            $this->addLog($request->token, 'Restore from trash', 'Artwork '.$element->slug);
 
             // retourner le post
             return response()->json(Trash::all(), 200);
@@ -112,6 +118,8 @@ class TrashController extends Controller
 
         // Delete le post de la DB
         $element->delete();
+        $this->addLog($request->token, 'Delete from trash', 'Person '.$element->slug);
+
         $elements = Trash::all();
         return response()->json($elements);
     }

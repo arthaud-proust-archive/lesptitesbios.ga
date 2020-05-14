@@ -9,8 +9,8 @@ class Persons extends Model
     protected $table = 'persons';
 
     protected $fillable = [
-        'id', 'slug', 'state', 'name', 'img', 'date', 'bio', 'notes'
+        'id', 'slug', 'state', 'name', 'img', 'date', 'bio', 'notes', 'editor'
     ];
 
-    public $timestamps = false;
+    public $timestamps = true;
 }

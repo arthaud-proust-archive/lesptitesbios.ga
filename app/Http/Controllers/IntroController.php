@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Traits\Logs;
 use App\Intro;
 use JWTAuth;
 use Validator;
@@ -10,6 +11,7 @@ use Response;
 
 class IntroController extends Controller
 {
+    use Logs;
 
 
 
@@ -39,6 +41,7 @@ class IntroController extends Controller
         // Enregistrer le post dans la DB
         $intro->content = $request->get('content');
         $intro->save();
+        $this->addLog($request->token, 'Update', 'Intro');
 
         $intro = intro::find(1);
         // retourner le succès et le post

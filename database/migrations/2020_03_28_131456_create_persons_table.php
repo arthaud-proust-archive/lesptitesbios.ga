@@ -23,6 +23,7 @@ class CreatePersonsTable extends Migration
             $table->string('date')->nullable();
             $table->text('bio')->nullable();
             $table->text('notes')->nullable();
+            $table->string('editor')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable(); 
         });

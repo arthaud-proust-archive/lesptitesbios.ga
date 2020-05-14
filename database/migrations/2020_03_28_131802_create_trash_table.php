@@ -27,6 +27,7 @@ class CreateTrashTable extends Migration
             $table->text('content')->nullable();
             $table->text('text')->nullable();
             $table->text('notes')->nullable();
+            $table->string('editor')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
         });

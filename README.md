@@ -11,6 +11,7 @@ Vous pouvez nous aider à la rédaction du site en vous [inscrivant](https://les
 
 ### Caractéristiques
 - REST Api
+- Sigle Page Application
 - Chargement et requêtes optimisées
 - [Badges](https://lesptitesbios.ga/badges) informatifs sur les fiches
 - Possibilité d'imprimer les fiches avec plusieurs options différentes
@@ -20,6 +21,7 @@ Vous pouvez nous aider à la rédaction du site en vous [inscrivant](https://les
 - Les utilisateur vérifiés peuvent uniquement ajouter des fiches (auteurs et œuvres).
 - Les rédacteur peuvent en plus les modifier et les supprimer.
 - Les administrateurs peuvent modifier les badges des fiches, gérer les fiches, modifier l'introduction du site et accéder à la corbeille pour restaurer ou supprimer définitivement une fiche.
+- Dashboard permettant la gestion des utilisateurs, l'accès aux éléments supprimés et aux logs d'action
 
 # Api
 Vous pouvez utiliser notre Api pour récupérer les fiches du site, avec des requêtes Json.
@@ -41,6 +43,9 @@ GET https://lesptitesbios.ga/api/person/charles-baudelaire
     "date": "1821-1867",
     "bio": "...",
     "notes": null,
+    "editor": "Arthaud",
+    "created_at": "2020-05-12 22:37:05",
+    "updated_at": null
 }
 ```
 
@@ -60,5 +65,8 @@ GET https://lesptitesbios.ga/api/artwork/une-charogne
     "content": "...",
     "notes": null,
     "text": null,
+    "editor": "Arthaud",
+    "created_at": "2020-05-12 22:35:51",
+    "updated_at": "2020-05-12 22:48:36"
 }
 ```
